@@ -1,6 +1,6 @@
-const Rainfall = require('./rainfall')
+const DailyRecord = require('./dailyrecord')
 
-Rainfall.deleteMany()
+DailyRecord.deleteMany()
   .then(() => {
-    console.log('Deleted rainfall records')
+    console.log('Deleted daily records')
 })

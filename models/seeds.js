@@ -9,8 +9,6 @@ function apiForCity(latitude, longitude, date) {
         // const rainfall = res.data.forecast.forecastday[0] // for apixu api
         let rainfall = 0
         if (res.data.daily.data[0].precipIntensity) {
-          console.log('toprainfall', rainfall)
-          console.log(res.data.daily.data[0].precipIntensity)
           rainfall = res.data.daily.data[0].precipIntensity
         }
         
@@ -26,16 +24,51 @@ const cities =
     {name: 'sydney', latitude: -33.8688, longitude:  151.2093 },
     {name: 'wellington', latitude:  -41.2865, longitude: 174.7762 }
 ]
-
-cities.forEach((city) => {
+const dates = 
+[
+    "2017-11-05",
+    "2017-11-06",
+    "2017-11-07",
+    "2017-11-08",
+    "2017-11-09",
+    "2017-11-10",
+    "2017-11-11",
+    "2017-11-12",
+    "2017-11-13",
+    "2017-11-14",
+    "2017-11-15",
+    "2017-11-16",
+    "2017-11-17",
+    "2017-11-18",
+    "2017-11-19",
+    "2017-11-20",
+    "2017-11-21",
+    "2017-11-22",
+    "2017-11-23",
+    "2017-11-24",
+    "2017-11-25",
+    "2017-11-26",
+    "2017-11-27",
+    "2017-11-28",
+    "2017-11-29",
+    "2017-11-30",
+    "2017-12-01",
+    "2017-12-02",
+    "2017-12-03",
+    "2017-12-04",
+    "2017-12-05"
+]
+dates.forEach((date) => {
+  let dateFormat = date + 'T00:00:00+1100'
+  cities.forEach((city) => {
     
-    apiForCity(city.latitude, city.longitude, '2017-11-06T00:00:00+1100')
+    apiForCity(city.latitude, city.longitude, dateFormat)
         .then((data) => {
             console.log('actual rainfall', data)
             DailyRecord.create({
-                date: "2017-11-06",
+                date: date,
                 amount: data * 24,
-                city: city.name + 'test2'
+                city: city.name
             },
             (data) => {
                 console.log("This saved?", data)
@@ -47,4 +80,5 @@ cities.forEach((city) => {
             //     console.log("the error", error)
             // })
         })
+  })
 })
