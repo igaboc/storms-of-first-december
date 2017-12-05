@@ -1,0 +1,11 @@
+
+POST http://localhost:7000/rainfalls
+Content-Type: application/json
+
+{
+    "city": "Melbourne",
+    "date": "2017-01-01",
+    "amount": 23
+}
+
+###

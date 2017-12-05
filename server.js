@@ -1,4 +1,5 @@
 const express = require('express')
+const bodyParser = require('body-parser')
 
 const server = express()
 
@@ -7,7 +8,8 @@ server.use(bodyParser.json()) // Allows me to have JSPn uploads (POST/PUT/PATCH)
 
 // Routes
 server.use([
-    require('./routes/artists')
+    require('./routes/rainfalls'),
+    require('./routes/dailyrecords')
 ])
 
 server.listen(7000, (error) => {
